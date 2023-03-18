@@ -1,0 +1,33 @@
+<div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Has voted?</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let voter of voters">
+      <td>{{voter.name}}</td>
+      <td>{{voter.hasVoted ? 'Yes' : 'No' }}</td>
+    </tr>
+    </tbody>
+    <div class="row" style="margin-top: 30px">
+      <div class="col-sm-5 form-group">
+        <form [formGroup]="form" (ngSubmit)="addVoter()">
+          <input type="text" placeholder="{{ 'Add voter' }}" class="form-control" [formControl]="voterName">
+        </form>
+      </div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-primary" (click)="addVoter()">Add</button>
+      </div>
+    </div>
+    <div>
+      <app-add-vote *ngIf="voters"
+                    [voters]="voters"
+                    [candidates]="candidates"
+                    (eventTask)="setVote($event)"
+      ></app-add-vote>
+    </div>
+  </table>
+</div>

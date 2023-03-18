@@ -1,0 +1,37 @@
+<div>
+  <h2>Vote!</h2>
+</div>
+<div>
+  <table class="table">
+    <tbody>
+    <div class="row">
+      <div [formGroup]="form">
+        <div class="col-sm-5">
+          <select
+            class="custom-select mb-3 form-control"
+            formControlName="voterId">
+            <option value="">Choose voter</option>
+            <option *ngFor="let voter of filteredVoters" [ngValue]="voter.id">
+              {{ voter.name }}
+            </option>
+          </select>
+        </div>
+        <div class="col-sm-5">
+          <select
+            class="custom-select mb-3 form-control"
+            formControlName="candidateId">
+            <option value="">Choose candidate</option>
+            <option *ngFor="let candidate of candidates" [ngValue]="candidate.id">
+              {{ candidate.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-danger" [disabled]="!form.valid" (click)="onSubmit()">Submit!</button>
+      </div>
+    </div>
+
+    </tbody>
+  </table>
+</div>

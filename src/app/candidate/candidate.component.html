@@ -1,0 +1,26 @@
+<div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Votes count</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let candidate of candidates">
+      <td>{{candidate.name}}</td>
+      <td>{{candidate.votersCount}}</td>
+    </tr>
+    </tbody>
+    <div class="row" style="margin-top: 30px">
+      <div class="col-sm-5 form-group">
+        <form [formGroup]="form" (ngSubmit)="addCandidate()">
+          <input type="text" placeholder="{{ 'Add candidate' }}" class="form-control" [formControl]="candidateName">
+        </form>
+      </div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-primary" (click)="addCandidate()">Add</button>
+      </div>
+    </div>
+  </table>
+</div>
