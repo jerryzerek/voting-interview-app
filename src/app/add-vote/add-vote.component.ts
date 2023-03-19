@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {VoteModel, VoterModel} from "../model/voter.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {CandidateModel} from "../model/candidate.model";
 
 @Component({
   selector: 'app-add-vote',
@@ -13,14 +14,12 @@ export class AddVoteComponent implements OnInit {
     this.filteredVoters = voters.filter(voter => !voter.hasVoted);
   }
 
-  @Input() candidates: null | any;
+  @Input() candidates?: CandidateModel[];
 
   @Output()
   eventTask = new EventEmitter<VoteModel>();
 
-  filteredVoters: any | null;
-
-  constructor() { }
+  filteredVoters?: VoterModel[];
 
   ngOnInit(): void {
   }
@@ -30,13 +29,21 @@ export class AddVoteComponent implements OnInit {
     voterId: new FormControl('', Validators.required)
   });
 
+  get candidateId(): FormControl {
+    return this.form.get('candidateId') as FormControl;
+  }
+
+  get voterId(): FormControl {
+    return this.form.get('voterId') as FormControl;
+  }
+
   onSubmit() {
     if (!this.form.valid) {
       return;
     }
     this.eventTask.emit(this.form.value);
-    this.form.get('candidateId')?.setValue("");
-    this.form.get('voterId')?.setValue("");
+    this.candidateId.setValue("");
+    this.voterId.setValue("");
   }
 
 }

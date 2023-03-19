@@ -37,16 +37,18 @@ export class VoterComponent implements OnInit {
   }
 
   addVoter() {
-    this.voteService.addVoter({name: this.voterName.value}).pipe(
-      switchMap(() => this.voteService.getVoters())
-    ).subscribe((voters) => this.voters = voters);
+    this.voteService.addVoter({name: this.voterName.value})
+      .pipe(
+        switchMap(() => this.voteService.getVoters()))
+      .subscribe((voters) => this.voters = voters);
 
     this.form.reset();
   }
 
   setVote(vote: VoteModel) {
-    this.voteService.setVote(vote.candidateId, vote.voterId).pipe(
-      switchMap(() => this.voteService.getVoters())
-    ).subscribe((voters) => this.voters = voters);
+    this.voteService.setVote(vote.candidateId, vote.voterId)
+      .pipe(
+        switchMap(() => this.voteService.getVoters()))
+      .subscribe((voters) => this.voters = voters);
   }
 }

@@ -14,7 +14,7 @@
     </tbody>
     <div class="row" style="margin-top: 30px">
       <div class="col-sm-5 form-group">
-        <form [formGroup]="form" (ngSubmit)="addVoter()">
+        <form [formGroup]="form">
           <input type="text" placeholder="{{ 'Add voter' }}" class="form-control" [formControl]="voterName">
         </form>
       </div>

@@ -27,10 +27,7 @@ export class VoteService {
     return this.httpClient.post<CandidateModel>(this.api.candidates, candidate)
   }
 
-  setVote(candidateId: string, voterId: string): Observable<any> {
-    return this.httpClient.get<any>(`${this.api.voters}/${voterId}/candidates/${candidateId}`);
+  setVote(candidateId: string, voterId: string): Observable<void> {
+    return this.httpClient.put<void>(`${this.api.voters}/${voterId}/candidates/${candidateId}`, '');
   }
-
-
-
 }

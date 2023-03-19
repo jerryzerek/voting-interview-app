@@ -14,7 +14,7 @@
     </tbody>
     <div class="row" style="margin-top: 30px">
       <div class="col-sm-5 form-group">
-        <form [formGroup]="form" (ngSubmit)="addCandidate()">
+        <form [formGroup]="form">
           <input type="text" placeholder="{{ 'Add candidate' }}" class="form-control" [formControl]="candidateName">
         </form>
       </div>

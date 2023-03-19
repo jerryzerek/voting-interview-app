@@ -14,7 +14,7 @@ export class CandidateComponent implements OnInit {
   constructor(private voteService: VoteService) {
   }
 
-  candidates?: CandidateModel[] = [];
+  candidates?: CandidateModel[];
 
   ngOnInit(): void {
     this.voteService.getCandidates().subscribe(candidates => {
@@ -31,9 +31,10 @@ export class CandidateComponent implements OnInit {
   }
 
   addCandidate() {
-    this.voteService.addCandidate({name: this.candidateName.value}).pipe(
-      switchMap(() => this.voteService.getCandidates())
-    ).subscribe((candidates) => this.candidates = candidates);
+    this.voteService.addCandidate({name: this.candidateName.value})
+      .pipe(
+        switchMap(() => this.voteService.getCandidates())
+      ).subscribe((candidates) => this.candidates = candidates);
 
     this.form.reset();
   }
